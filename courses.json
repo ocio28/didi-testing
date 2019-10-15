@@ -1,0 +1,11 @@
+[{
+  "id": "1",
+  "nombre": "Pasteleria",
+  "duracion": "2 meses",
+  "fecha_fin": "24-09-2019"
+}, {
+  "id": "2",
+  "nombre": "Carpinteria",
+  "duracion": "3 meses",
+  "fecha_fin": "28-09-2019"
+}]
