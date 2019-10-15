@@ -13,14 +13,12 @@ const vcissuer = new EthrDID({
 })
 
 //TODO por parametros
-let accion = process.argv[2]
-let cantidad = parseInt(process.argv[3], 10)
+//let accion = process.argv[2]
+let cantidad = parseInt(process.argv[2], 10)
 
-console.log(accion, cantidad)
-if (accion === 'gen' || isNaN(cantidad)) {
+console.log(cantidad)
+if (!isNaN(cantidad)) {
   fs.mkdir('./identidades', () => crearIdentidades(cantidad))
-} else {
-  console.log('node . accion [parametro]', accion)
 }
 
 

@@ -7,7 +7,7 @@ process.env.MOURO
 
 ### Ejecucion
 ```
-node . gen 10
+node . 10
 ```
 
 las identidades quedan en la carpeta identidades
