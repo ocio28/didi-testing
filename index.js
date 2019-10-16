@@ -42,7 +42,7 @@ function crearIdentidades(cantidad = 10) {
 
   //console.log(datosCredenciales)
   identidades.forEach(guardarIdentidades)
-  fs.writeFile('./datos_credenciales.json', JSON.stringify(datosCredenciales), res => {
+  fs.writeFile('./datos_credenciales.json', JSON.stringify(datosCredenciales) + "\n", res => {
     console.log('datos_credenciales', res)
   })
 
@@ -50,6 +50,8 @@ function crearIdentidades(cantidad = 10) {
 }
 
 function generarCredencial(data) {
+  console.log("----------------")
+  console.log(data)
   const fullPayload = vc({
     didiserver: {
       nombre: data.nombre,
@@ -59,7 +61,7 @@ function generarCredencial(data) {
       fecha_fin: data.fecha_fin,
       formato: 'vc'
     }
-  })
+  },data.did)
 
   const identidadPayload = vc({
     didiserver_identidad: {
@@ -67,7 +69,7 @@ function generarCredencial(data) {
       apellido: data.apellido,
       formato: 'vc'
     }
-  })
+  },data.did)
   const cursoPayload = vc({
     didiserver_curso: {
       curso: data.curso,
@@ -75,7 +77,7 @@ function generarCredencial(data) {
       fecha_fin: data.fecha_fin,
       formato: 'vc'
     }
-  })
+  },data.did)
 
   createVerifiableCredential(fullPayload, vcissuer).then(addEdge).catch(console.error)
   createVerifiableCredential(identidadPayload, vcissuer).then(addEdge).catch(console.error)
@@ -87,9 +89,10 @@ function mouroAddEdge(jwt) {
   console.log(hash_mouro)
 }*/
 
-function vc(credentialSubject)  {
+function vc(credentialSubject,did)  {
+  
   return {
-    sub: 'did:ethr:0x435df3eda57154cf8cf7926079881f2912f54db4',
+    sub: did,
     nbf: 1562950282,
     vc: {
       '@context': ['https://www.w3.org/2018/credentials/v1'],
